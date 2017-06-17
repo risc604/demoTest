@@ -72,8 +72,12 @@ public class Main {
 	    intDate[i] = byteToUnsignedInt(byteHexDate[i]);
 	}
 	LocalDateTime dt = LocalDateTime.of(intDate[0], intDate[1], intDate[2], intDate[3], intDate[4], 0, 0);
-	System.out.println("dt: " + dt.toString() + ", " + dt.getYear() + "/" + dt.getMonthValue() + "/"
-		+ dt.getDayOfMonth() + "  " + +dt.getHour() + ":" + dt.getMinute() + ":" + dt.getSecond());
+	// System.out.println("dt: " + dt.toString() + ", " + dt.getYear() + "/" +
+	// dt.getMonthValue() + "/"
+	// + dt.getDayOfMonth() + " " + +dt.getHour() + ":" + dt.getMinute() + ":" +
+	// dt.getSecond() );
+	System.out.printf("dt: %s, %02d/%02d/%02d  %02d:%02d:%02d, %n", dt.toString(), dt.getYear(), dt.getMonthValue(),
+		dt.getDayOfMonth(), dt.getHour(), dt.getMinute(), dt.getSecond());
     }
 
     public static void main(String[] args) throws ParseException {
