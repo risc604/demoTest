@@ -1,6 +1,8 @@
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,12 +82,29 @@ public class Main {
 		dt.getDayOfMonth(), dt.getHour(), dt.getMinute(), dt.getSecond());
     }
 
+    public static void testDateToLong() {
+	// 2016-01-01 15:00:00 GMT
+	SimpleDateFormat sdfor = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
+	Date date = null;
+	try {
+	    date = sdfor.parse("2016-01-01 15:00:00 GMT");
+	} catch (ParseException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	System.out.println("date: " + date + ", long time: " + date.getTime());
+
+    }
+
     public static void main(String[] args) throws ParseException {
 	// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
 	// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
 
 	// randomTest();
-	testHexDateTime();
+	// testDateTime();
+	// testHexDateTime();
+	testDateToLong();
     }
 
 }
