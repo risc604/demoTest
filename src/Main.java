@@ -1,8 +1,10 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -97,6 +99,33 @@ public class Main {
 
     }
 
+    public static void testStringSparet() {
+	String exp = "[0-9a-zA-Z&&[00{1,1}]]";
+	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
+
+	// List<String> tmpStrList = new ArrayList<String>();
+	List strList = new ArrayList<String>();
+
+	for (int i = 0; i < src.length(); i++) {
+	    // System.out.println(strList.get(i));
+	    String[] tmpStr = src.split(exp);
+	    System.out.println(tmpStr[i]);
+	    strList.add(tmpStr[i]);
+	}
+
+	/// for (int i = 0; i < src.length(); i++) {
+	/// String[] tmpNewStr = src.split("00");
+	/// System.out.println(Arrays.toString(tmpNewStr));
+	/// tmpStrList.add(tmpNewStr.toString() + "00");
+	/// }
+	///
+	for (int i = 0; i < strList.size(); i++) {
+	    System.out.println(strList.get(i));
+	}
+	///// System.out.println(Arrays.toString(tmpStrList.toArray()));
+
+    }
+
     public static void main(String[] args) throws ParseException {
 	// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
 	// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
@@ -104,7 +133,8 @@ public class Main {
 	// randomTest();
 	// testDateTime();
 	// testHexDateTime();
-	testDateToLong();
+	// testDateToLong();
+	testStringSparet();
     }
 
 }
