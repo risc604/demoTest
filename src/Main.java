@@ -103,15 +103,7 @@ public class Main {
     }
 
     public static void testStringSparet() {
-<<<<<<< HEAD
 	String exp = "(?:0*00)";
-=======
-<<<<<<< HEAD
-	String patn = "\\w{4,4}&&00*";
-=======
-	String exp = "[0-9a-zA-Z&&[00{1,1}]]";
->>>>>>> 2a0d703ef578f2475d478ba6107da6ae5587201d
->>>>>>> 453e2197e9cb0da81131c904c9c717511218a44d
 	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
 
 	// List<String> tmpStrList = new ArrayList<String>();
@@ -119,30 +111,10 @@ public class Main {
 
 	System.out.println("src length: " + src.length());
 
-<<<<<<< HEAD
-	for (int i = 0; i < src.length() / 6; i++) {
-	    // System.out.println(strList.get(i));
-	    String[] tmpStr = src.split(exp);
-	    System.out.printf("[%02d]: %s : %02d%n", i, tmpStr[i], tmpStr[i].length());
-	    strList.add(tmpStr[i]);
-	}
-
-	/// for (int i = 0; i < src.length(); i++) {
-	/// String[] tmpNewStr = src.split("00");
-	/// System.out.println(Arrays.toString(tmpNewStr));
-	/// tmpStrList.add(tmpNewStr.toString() + "00");
-	/// }
-	///
-	// for (int i = 0; i < strList.size(); i++) {
-	// System.out.println(strList.get(i));
-	// }
-=======
-	for (int i = 0; i < src.length(); i++) {
-	    String[] Strtmp = src.split(patn);
+	for (int i = 0; i < src.length()/6; i++) {
+	    String[] Strtmp = src.split(exp);
 	    System.out.printf("Strtmp[%02d]: %s %n", i, Strtmp[i]);
 	}
-
->>>>>>> 453e2197e9cb0da81131c904c9c717511218a44d
 	///// System.out.println(Arrays.toString(tmpStrList.toArray()));
 
     }
