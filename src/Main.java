@@ -3,11 +3,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
-<<<<<<< HEAD
-import java.util.List;
 import java.util.StringTokenizer;
-=======
->>>>>>> 453e2197e9cb0da81131c904c9c717511218a44d
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,7 +107,7 @@ public class Main {
 
 	System.out.println("src length: " + src.length());
 
-	for (int i = 0; i < src.length()/6; i++) {
+	for (int i = 0; i < src.length() / 6; i++) {
 	    String[] Strtmp = src.split(exp);
 	    System.out.printf("Strtmp[%02d]: %s %n", i, Strtmp[i]);
 	}
