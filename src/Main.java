@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,16 +101,16 @@ public class Main {
     }
 
     public static void testStringSparet() {
-	String exp = "[0-9a-zA-Z&&[00{1,1}]]";
+	String exp = "(?:0*00)";
 	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
 
 	// List<String> tmpStrList = new ArrayList<String>();
 	List strList = new ArrayList<String>();
 
-	for (int i = 0; i < src.length(); i++) {
+	for (int i = 0; i < src.length() / 6; i++) {
 	    // System.out.println(strList.get(i));
 	    String[] tmpStr = src.split(exp);
-	    System.out.println(tmpStr[i]);
+	    System.out.printf("[%02d]: %s : %02d%n", i, tmpStr[i], tmpStr[i].length());
 	    strList.add(tmpStr[i]);
 	}
 
@@ -119,10 +120,46 @@ public class Main {
 	/// tmpStrList.add(tmpNewStr.toString() + "00");
 	/// }
 	///
-	for (int i = 0; i < strList.size(); i++) {
-	    System.out.println(strList.get(i));
-	}
+	// for (int i = 0; i < strList.size(); i++) {
+	// System.out.println(strList.get(i));
+	// }
 	///// System.out.println(Arrays.toString(tmpStrList.toArray()));
+
+    }
+
+    public static void testStringToken() {
+	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
+	StringTokenizer tokens = new StringTokenizer(src, "0?00");
+
+	while (tokens.hasMoreTokens()) {
+	    System.out.printf("%s:%02d %n", tokens.nextToken(), tokens.countTokens());
+	}
+    }
+
+    public static void testStringArray() {
+	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
+	char[] chArrays = src.toCharArray();
+	System.out.printf("%s:%02d, char size: %02d %n", "src", src.length(), chArrays.length);
+
+	for (int j = 0; j < chArrays.length / 6; j++) {
+	    char[] tmpStr = new char[7];
+	    for (int k = 0; k < 6; k++) {
+		tmpStr[k] = chArrays[j * 6 + k];
+	    }
+	    System.out.printf("%s %n", String.valueOf(tmpStr));
+	}
+
+    }
+
+    public static void testStringArray2() {
+	String src = "1E28001E01001D4B001D37001D28001D1C001D11001D09001D01001C5E001C58001C53001C4E001C48001C44001C3F001C3B001C37001C34001C30001C2D001C2A001C27001C25001C24001C23001C22001C21001C21001C20001C1F00225400";
+	System.out.printf("%s:%02d %n", "src", src.length());
+
+	for (int j = 0; j < src.length() / 6; j++) {
+
+	    String tmpStr = String.copyValueOf(src.toCharArray(), j * 6, 6);
+	    System.out.printf("[%02d]:%s %n", j, tmpStr);
+	}
 
     }
 
@@ -134,7 +171,10 @@ public class Main {
 	// testDateTime();
 	// testHexDateTime();
 	// testDateToLong();
-	testStringSparet();
+	// testStringSparet();
+	// testStringToken();
+	// testStringArray();
+	testStringArray2();
     }
 
 }
