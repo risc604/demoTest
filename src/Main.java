@@ -105,11 +105,9 @@ public class Main {
     public static String calculateEndDT(int records, String startDT) {
 	// --- Hex string to convert dec number
 	int[] dtStart = covertDTFormat(startDT);
-	// String startDTString = Arrays.toString(dtStart);
-	// System.out.println("startDTString: " + startDTString);
+	System.out.println("dtStart: " + Arrays.toString(dtStart));
 
 	SimpleDateFormat sdf = new SimpleDateFormat("[yy, MM, dd, HH, mm]");
-	// SimpleDateFormat sdf = new SimpleDateFormat(Arrays.toString(dtStart));
 	Date tmpDT = null;
 	try {
 	    tmpDT = sdf.parse(Arrays.toString(dtStart));
@@ -122,22 +120,19 @@ public class Main {
 	Calendar calendar = Calendar.getInstance();
 	calendar.setTime(tmpDT);
 	System.out.println("calendar: " + calendar.getTime());
-
 	calendar.add(Calendar.MINUTE, records);
 	System.out.println("add " + records + " records, " + "calendar: " + calendar.getTime());
 	int[] intDT = new int[6];
-	intDT[0] = calendar.get(Calendar.YEAR);
-	intDT[1] = calendar.get(Calendar.MONTH);
+	intDT[0] = calendar.get(Calendar.YEAR) - 2000;
+	intDT[1] = calendar.get(Calendar.MONTH) + 1;
 	intDT[2] = calendar.get(Calendar.DAY_OF_MONTH);
 	intDT[3] = calendar.get(Calendar.HOUR_OF_DAY);
 	intDT[4] = calendar.get(Calendar.MINUTE);
 	intDT[5] = calendar.get(Calendar.SECOND);
 
-	String endDTString = String.format("%02X%02X%02X%02X%02X", intDT[0] - 2000, intDT[1] + 1, intDT[2], intDT[3],
-		intDT[4], intDT[5]);
+	String endDTString = String.format("%02X%02X%02X%02X%02X", intDT[0], intDT[1], intDT[2], intDT[3], intDT[4],
+		intDT[5]);
 	System.out.println("endDTString: " + endDTString);
-	// endDTString =
-
 	return endDTString;
     }
 
