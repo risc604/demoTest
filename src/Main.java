@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -64,6 +65,61 @@ public class Main {
 
     public static int byteToUnsignedInt(byte b) {
 	return 0x00 << 24 | b & 0xff;
+    }
+
+    public static int[] covertDTFormat(String srcTime) {
+	byte[] startByte = hexStringToByteArray(srcTime);
+	int[] dtNumber = new int[startByte.length];
+	for (int i = 0; i < startByte.length; i++) {
+	    dtNumber[i] = byteToUnsignedInt(startByte[i]);
+	}
+
+	// Log.d(TAG, "Date Time Number: " + Arrays.toString(dtNumber));
+	System.out.println("covertDTFormat(), Date Time Number: " + Arrays.toString(dtNumber));
+	return dtNumber;
+    }
+
+    public static String covertDateToString(Calendar calDate) {
+	int[] newDT = new int[5];
+	newDT[0] = calDate.getTime().getYear() + 1900 - 2000;
+	newDT[1] = calDate.getTime().getMonth() + 1;
+	newDT[2] = calDate.getTime().getDate();
+	newDT[3] = calDate.getTime().getHours();
+	newDT[4] = calDate.getTime().getMinutes();
+	// Log.i(TAG, "covertDateToString(), newDT: " + Arrays.toString(newDT));
+	System.out.println("covertDateToString(), newDT: " + Arrays.toString(newDT));
+	// Log.d(TAG, "Year: " + newDT[0] + ", Month: " + newDT[1] + ", Date: " +
+	// newDT[2] +
+	// ", Hour: " + newDT[3] + ", Minute: " + newDT[4]);
+
+	String lastTime = String.format("%02X%02X%02X%02X%02X", newDT[0], newDT[1], newDT[2], newDT[3], newDT[4]);
+	System.out.println("covertDateToString(), lastTime: " + lastTime);
+	// Log.i(TAG, "lastTime : " + lastTime);
+	// Log.d(TAG, "lastTime : " + lastTime);
+
+	return lastTime;
+    }
+
+    public static String calculateEndTime2(int records, String startTime) {
+	int[] dtTime = covertDTFormat(startTime);
+	System.out.println("calculateEndTime2(), dtTime: " + Arrays.toString(dtTime));
+	Date startDT = new Date(dtTime[0] + 100, dtTime[1] - 1, dtTime[2], dtTime[3], dtTime[4], 0);
+	// Log.i(TAG, "calculateEndTime2(), dtTime: " + Arrays.toString(dtTime) + ",
+	// startDT: " + startDT.toString());
+	System.out.println(
+		"calculateEndTime2(), dtTime: " + Arrays.toString(dtTime) + ", startDT: " + startDT.toString());
+
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(startDT);
+	System.out.println("before add calendar: " + calendar.getTime().toString());
+	calendar.add(Calendar.MINUTE, records); // minute + 156
+	// Log.i(TAG, "calendar: " + calendar.getTime().toString() + ", add records: " +
+	// records + ", "
+	// + calendar.getTime().toString());
+	System.out.println("calendar: " + calendar.getTime().toString() + ", add records: " + records + ", "
+		+ calendar.getTime().toString());
+
+	return (covertDateToString(calendar));
     }
 
     public static void testHexDateTime() {
@@ -151,6 +207,15 @@ public class Main {
 
     }
 
+    public static void testCalculateEndTime2() {
+	// String startTime = "11081F0B0C";
+	// String startTime = "77D091E1205";
+	String startTime = "11081E111A";
+	int record = 40;
+
+	calculateEndTime2(record - 1, startTime);
+    }
+
     public static void main(String[] args) throws ParseException {
 	// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
 	// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
@@ -162,7 +227,10 @@ public class Main {
 	// testStringSparet();
 	// testStringToken();
 	// testStringArray();
-	testStringArray2();
+	// testStringArray2();
+
+	testCalculateEndTime2();
+
     }
 
 }
