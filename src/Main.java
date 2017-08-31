@@ -80,12 +80,14 @@ public class Main {
     }
 
     public static String covertDateToString(Calendar calDate) {
-	int[] newDT = new int[5];
-	newDT[0] = calDate.getTime().getYear() + 1900 - 2000;
-	newDT[1] = calDate.getTime().getMonth() + 1;
-	newDT[2] = calDate.getTime().getDate();
-	newDT[3] = calDate.getTime().getHours();
-	newDT[4] = calDate.getTime().getMinutes();
+	int[] newDT = new int[6];
+	newDT[0] = calDate.get(Calendar.YEAR) - 2000;
+	newDT[1] = calDate.get(Calendar.MONTH) + 1;
+	newDT[2] = calDate.get(Calendar.DAY_OF_MONTH);
+	newDT[3] = calDate.get(Calendar.HOUR_OF_DAY);
+	newDT[4] = calDate.get(Calendar.MINUTE);
+	newDT[5] = calDate.get(Calendar.SECOND);
+
 	// Log.i(TAG, "covertDateToString(), newDT: " + Arrays.toString(newDT));
 	System.out.println("covertDateToString(), newDT: " + Arrays.toString(newDT));
 	// Log.d(TAG, "Year: " + newDT[0] + ", Month: " + newDT[1] + ", Date: " +
@@ -98,6 +100,45 @@ public class Main {
 	// Log.d(TAG, "lastTime : " + lastTime);
 
 	return lastTime;
+    }
+
+    public static String calculateEndDT(int records, String startDT) {
+	// --- Hex string to convert dec number
+	int[] dtStart = covertDTFormat(startDT);
+	// String startDTString = Arrays.toString(dtStart);
+	// System.out.println("startDTString: " + startDTString);
+
+	SimpleDateFormat sdf = new SimpleDateFormat("[yy, MM, dd, HH, mm]");
+	// SimpleDateFormat sdf = new SimpleDateFormat(Arrays.toString(dtStart));
+	Date tmpDT = null;
+	try {
+	    tmpDT = sdf.parse(Arrays.toString(dtStart));
+	} catch (ParseException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	System.out.println("tmpDT: " + tmpDT);
+
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(tmpDT);
+	System.out.println("calendar: " + calendar.getTime());
+
+	calendar.add(Calendar.MINUTE, records);
+	System.out.println("add " + records + " records, " + "calendar: " + calendar.getTime());
+	int[] intDT = new int[6];
+	intDT[0] = calendar.get(Calendar.YEAR);
+	intDT[1] = calendar.get(Calendar.MONTH);
+	intDT[2] = calendar.get(Calendar.DAY_OF_MONTH);
+	intDT[3] = calendar.get(Calendar.HOUR_OF_DAY);
+	intDT[4] = calendar.get(Calendar.MINUTE);
+	intDT[5] = calendar.get(Calendar.SECOND);
+
+	String endDTString = String.format("%02X%02X%02X%02X%02X", intDT[0] - 2000, intDT[1] + 1, intDT[2], intDT[3],
+		intDT[4], intDT[5]);
+	System.out.println("endDTString: " + endDTString);
+	// endDTString =
+
+	return endDTString;
     }
 
     public static String calculateEndTime2(int records, String startTime) {
@@ -210,10 +251,11 @@ public class Main {
     public static void testCalculateEndTime2() {
 	// String startTime = "11081F0B0C";
 	// String startTime = "77D091E1205";
-	String startTime = "11081E111A";
+	String startTime = "11081F111A";
 	int record = 40;
 
-	calculateEndTime2(record - 1, startTime);
+	// calculateEndTime2(record - 1, startTime);
+	calculateEndDT(record - 1, startTime);
     }
 
     public static void main(String[] args) throws ParseException {
