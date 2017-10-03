@@ -122,24 +122,31 @@ public class Main {
 	System.out.println("calendar: " + calendar.getTime());
 	calendar.add(Calendar.MINUTE, records);
 	System.out.println("add " + records + " records, " + "calendar: " + calendar.getTime());
-	int[] intDT = new int[6];
-	intDT[0] = calendar.get(Calendar.YEAR) - 2000;
-	intDT[1] = calendar.get(Calendar.MONTH) + 1;
-	intDT[2] = calendar.get(Calendar.DAY_OF_MONTH);
-	intDT[3] = calendar.get(Calendar.HOUR_OF_DAY);
-	intDT[4] = calendar.get(Calendar.MINUTE);
-	intDT[5] = calendar.get(Calendar.SECOND);
+	// int[] intDT = new int[6];
+	// intDT[0] = calendar.get(Calendar.YEAR) - 2000;
+	// intDT[1] = calendar.get(Calendar.MONTH) + 1;
+	// intDT[2] = calendar.get(Calendar.DAY_OF_MONTH);
+	// intDT[3] = calendar.get(Calendar.HOUR_OF_DAY);
+	// intDT[4] = calendar.get(Calendar.MINUTE);
+	// intDT[5] = calendar.get(Calendar.SECOND);
+	// String endDTString = String.format("%02X%02X%02X%02X%02X",
+	// intDT[0], intDT[1], intDT[2], intDT[3], intDT[4], intDT[5]);
+	String endDTString = covertDateToString(calendar);
+	System.out.println("endDTString: " + endDTString + ", length: " + endDTString.length());
 
-	String endDTString = String.format("%02X%02X%02X%02X%02X", intDT[0], intDT[1], intDT[2], intDT[3], intDT[4],
-		intDT[5]);
-	System.out.println("endDTString: " + endDTString);
 	return endDTString;
     }
 
     public static String calculateEndTime2(int records, String startTime) {
 	int[] dtTime = covertDTFormat(startTime);
 	System.out.println("calculateEndTime2(), dtTime: " + Arrays.toString(dtTime));
-	Date startDT = new Date(dtTime[0] + 100, dtTime[1] - 1, dtTime[2], dtTime[3], dtTime[4], 0);
+	Date startDT = new Date();
+	try {
+	    startDT = new SimpleDateFormat().parse(Arrays.toString(dtTime));
+	} catch (ParseException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	// Log.i(TAG, "calculateEndTime2(), dtTime: " + Arrays.toString(dtTime) + ",
 	// startDT: " + startDT.toString());
 	System.out.println(
