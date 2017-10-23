@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -260,6 +263,39 @@ public class Main {
 	calculateEndDT(record - 1, startTime);
     }
 
+    public static void testImgFileType() {
+	ImageFileType imgfileType = new ImageFileType();
+
+	String[] fPathArray = new String[] { "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "",
+		"D:\\mt24hr\\20171019094813.png", "D:\\mt24hr\\20171019100051.png" };
+
+	boolean[] fileState = new boolean[] { false, false, false };
+
+	for (int i = 0; i < fPathArray.length; i++) {
+
+	    if (fPathArray[i].equalsIgnoreCase(""))
+		continue;
+
+	    try {
+
+		InputStream is = new FileInputStream(fPathArray[i]);
+		// InputStream is =
+		// getClass().getClassLoader().getResourceAsStream(fPathArray[i]);
+		// Path file = Paths.get(fPathArray[i]);
+		// InputStream is = Files.newInputStream(file);
+		byte[] fileSize = is.readAllBytes();
+		System.out.printf("file size: %04d bytes %n", fileSize.length);
+		fileState[0] = imgfileType.isValidJPEG(is, fileSize.length);
+		fileState[1] = imgfileType.isValidPNG(is);
+		fileState[2] = imgfileType.isJPEG(new File(fPathArray[i]));
+		System.out.println("[" + i + "] file State: " + Arrays.toString(fileState));
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	}
+    }
+
     public static void main(String[] args) throws ParseException {
 	// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
 	// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
@@ -273,7 +309,8 @@ public class Main {
 	// testStringArray();
 	// testStringArray2();
 
-	testCalculateEndTime2();
+	// testCalculateEndTime2();
+	testImgFileType();
 
     }
 
