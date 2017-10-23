@@ -1,10 +1,7 @@
 import java.io.File;
-<<<<<<< HEAD
-import java.io.IOException;
-=======
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
->>>>>>> a20238332678d163adc0105c6990b99032d1347b
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -17,9 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
-
-import jdk.internal.jimage.ImageReader;
 
 public class Main
 {
@@ -105,7 +101,6 @@ public class Main
 		System.out.println("covertDTFormat(), Date Time Number: " + Arrays.toString(dtNumber));
 		return dtNumber;
 	}
-<<<<<<< HEAD
 
 	public static String covertDateToString(Calendar calDate)
 	{
@@ -129,65 +124,6 @@ public class Main
 		// Log.d(TAG, "lastTime : " + lastTime);
 
 		return lastTime;
-=======
-	System.out.println("tmpDT: " + tmpDT);
-
-	Calendar calendar = Calendar.getInstance();
-	calendar.setTime(tmpDT);
-	System.out.println("calendar: " + calendar.getTime());
-	calendar.add(Calendar.MINUTE, records);
-	System.out.println("add " + records + " records, " + "calendar: " + calendar.getTime());
-	// int[] intDT = new int[6];
-	// intDT[0] = calendar.get(Calendar.YEAR) - 2000;
-	// intDT[1] = calendar.get(Calendar.MONTH) + 1;
-	// intDT[2] = calendar.get(Calendar.DAY_OF_MONTH);
-	// intDT[3] = calendar.get(Calendar.HOUR_OF_DAY);
-	// intDT[4] = calendar.get(Calendar.MINUTE);
-	// intDT[5] = calendar.get(Calendar.SECOND);
-	// String endDTString = String.format("%02X%02X%02X%02X%02X",
-	// intDT[0], intDT[1], intDT[2], intDT[3], intDT[4], intDT[5]);
-	String endDTString = covertDateToString(calendar);
-	System.out.println("endDTString: " + endDTString + ", length: " + endDTString.length());
-
-	return endDTString;
-    }
-
-    public static String calculateEndTime2(int records, String startTime) {
-	int[] dtTime = covertDTFormat(startTime);
-	System.out.println("calculateEndTime2(), dtTime: " + Arrays.toString(dtTime));
-	Date startDT = new Date();
-	try {
-	    startDT = new SimpleDateFormat().parse(Arrays.toString(dtTime));
-	} catch (ParseException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	// Log.i(TAG, "calculateEndTime2(), dtTime: " + Arrays.toString(dtTime) + ",
-	// startDT: " + startDT.toString());
-	System.out.println(
-		"calculateEndTime2(), dtTime: " + Arrays.toString(dtTime) + ", startDT: " + startDT.toString());
-
-	Calendar calendar = Calendar.getInstance();
-	calendar.setTime(startDT);
-	System.out.println("before add calendar: " + calendar.getTime().toString());
-	calendar.add(Calendar.MINUTE, records); // minute + 156
-	// Log.i(TAG, "calendar: " + calendar.getTime().toString() + ", add records: " +
-	// records + ", "
-	// + calendar.getTime().toString());
-	System.out.println("calendar: " + calendar.getTime().toString() + ", add records: " + records + ", "
-		+ calendar.getTime().toString());
-
-	return (covertDateToString(calendar));
-    }
-
-    public static void testHexDateTime() {
-	String hexDate = "1105160F23";
-	byte[] byteHexDate = hexStringToByteArray(hexDate);
-	System.out.println("byteHexDate: " + Arrays.toString(byteHexDate) + ", length: " + byteHexDate.length);
-	int[] intDate = new int[byteHexDate.length];
-	for (int i = 0; i < byteHexDate.length; i++) {
-	    intDate[i] = byteToUnsignedInt(byteHexDate[i]);
->>>>>>> a20238332678d163adc0105c6990b99032d1347b
 	}
 
 	public static String calculateEndDT(int records, String startDT)
@@ -281,6 +217,7 @@ public class Main
 		// 2016-01-01 15:00:00 GMT
 		SimpleDateFormat sdfor = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
 		Date date = null;
+
 		try
 		{
 			date = sdfor.parse("2016-01-01 15:00:00 GMT");
@@ -289,9 +226,7 @@ public class Main
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		System.out.println("date: " + date + ", long time: " + date.getTime());
-
 	}
 
 	public static void testStringSparet()
@@ -301,7 +236,6 @@ public class Main
 
 		// List<String> tmpStrList = new ArrayList<String>();
 		// List strList = new ArrayList<String>();
-
 		System.out.println("src length: " + src.length());
 
 		for (int i = 0; i < src.length() / 6; i++)
@@ -310,7 +244,6 @@ public class Main
 			System.out.printf("Strtmp[%02d]: %s %n", i, Strtmp[i]);
 		}
 		///// System.out.println(Arrays.toString(tmpStrList.toArray()));
-
 	}
 
 	public static void testStringToken()
@@ -339,7 +272,6 @@ public class Main
 			}
 			System.out.printf("%s %n", String.valueOf(tmpStr));
 		}
-
 	}
 
 	public static void testStringArray2()
@@ -349,12 +281,9 @@ public class Main
 
 		for (int j = 0; j < src.length() / 6; j++)
 		{
-
 			String tmpStr = String.copyValueOf(src.toCharArray(), j * 6, 6);
 			System.out.printf("[%02d]:%s %n", j, tmpStr);
 		}
-
-<<<<<<< HEAD
 	}
 
 	public static void testCalculateEndTime2()
@@ -363,50 +292,47 @@ public class Main
 		// String startTime = "77D091E1205";
 		String startTime = "11081F111A";
 		int record = 40;
-=======
-    public static void testImgFileType() {
-	ImageFileType imgfileType = new ImageFileType();
-
-	String[] fPathArray = new String[] { "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "",
-		"D:\\mt24hr\\20171019094813.png", "D:\\mt24hr\\20171019100051.png" };
-
-	boolean[] fileState = new boolean[] { false, false, false };
-
-	for (int i = 0; i < fPathArray.length; i++) {
-
-	    if (fPathArray[i].equalsIgnoreCase(""))
-		continue;
-
-	    try {
-
-		InputStream is = new FileInputStream(fPathArray[i]);
-		// InputStream is =
-		// getClass().getClassLoader().getResourceAsStream(fPathArray[i]);
-		// Path file = Paths.get(fPathArray[i]);
-		// InputStream is = Files.newInputStream(file);
-		byte[] fileSize = is.readAllBytes();
-		System.out.printf("file size: %04d bytes %n", fileSize.length);
-		fileState[0] = imgfileType.isValidJPEG(is, fileSize.length);
-		fileState[1] = imgfileType.isValidPNG(is);
-		fileState[2] = imgfileType.isJPEG(new File(fPathArray[i]));
-		System.out.println("[" + i + "] file State: " + Arrays.toString(fileState));
-	    } catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	}
-    }
-
-    public static void main(String[] args) throws ParseException {
-	// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
-	// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
->>>>>>> a20238332678d163adc0105c6990b99032d1347b
-
 		// calculateEndTime2(record - 1, startTime);
 		calculateEndDT(record - 1, startTime);
 	}
 
-<<<<<<< HEAD
+	public static void testImgFileType()
+	{
+		ImageFileType imgfileType = new ImageFileType();
+
+		String[] fPathArray = new String[]
+		{ "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "", "D:\\mt24hr\\20171019094813.png",
+		        "D:\\mt24hr\\20171019100051.png" };
+
+		boolean[] fileState = new boolean[]
+		{ false, false, false };
+
+		for (int i = 0; i < fPathArray.length; i++)
+		{
+			if (fPathArray[i].equalsIgnoreCase(""))
+				continue;
+
+			try
+			{
+				InputStream is = new FileInputStream(fPathArray[i]);
+				// InputStream is =
+				// getClass().getClassLoader().getResourceAsStream(fPathArray[i]);
+				// Path file = Paths.get(fPathArray[i]);
+				// InputStream is = Files.newInputStream(file);
+				byte[] fileSize = is.readAllBytes();
+				System.out.printf("file size: %04d bytes %n", fileSize.length);
+				fileState[0] = imgfileType.isValidJPEG(is, fileSize.length);
+				fileState[1] = imgfileType.isValidPNG(is);
+				fileState[2] = imgfileType.isJPEG(new File(fPathArray[i]));
+				System.out.println("[" + i + "] file State: " + Arrays.toString(fileState));
+			} catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static void testDateBefore()
 	{
 		final String PATTERN = "yyyy/MM/dd HH:mm:ss";
@@ -425,18 +351,14 @@ public class Main
 
 		System.out.println("date2.before(date1): " + date2.before(date1));
 		System.out.printf("date2.before(date3): " + date2.before(date3));
-=======
-	// testCalculateEndTime2();
-	testImgFileType();
->>>>>>> a20238332678d163adc0105c6990b99032d1347b
-
 	}
 
-	public static void testImageFileCheck()
+	public static void testImageFileCheck() throws Throwable
 	{
 		String fileName = "Your image file to be read";
 		ImageInputStream iis = ImageIO.createImageInputStream(new File(fileName));
 		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName("jpg");
+		@SuppressWarnings("unused")
 		boolean canRead = false;
 		while (readers.hasNext())
 		{
@@ -453,7 +375,7 @@ public class Main
 		}
 	}
 
-	public static void main(String[] args) throws ParseException
+	public static void main(String[] args) throws Throwable
 	{
 		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
 		// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
@@ -468,7 +390,9 @@ public class Main
 		// testStringArray2();
 
 		// testCalculateEndTime2();
-		testDateBefore();
+		// testDateBefore();
+
+		testImageFileCheck();
 	}
 
 }
