@@ -300,12 +300,17 @@ public class Main
 	{
 		ImageFileType imgfileType = new ImageFileType();
 
+		// String[] fPathArray = new String[]
+		// { "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "",
+		// "D:\\mt24hr\\20171019094813.png",
+		// "D:\\mt24hr\\20171019100051.png" };
+
 		String[] fPathArray = new String[]
-		{ "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "", "D:\\mt24hr\\20171019094813.png",
-		        "D:\\mt24hr\\20171019100051.png" };
+		{ "/Volumes/SD256GB02/shoe/ladypeep_1494324742.jpg", "/Volumes/SD256GB02/shoe/pigalle_1477584732.jpg", "",
+		        "/Volumes/SD256GB02/shoe/20171023113656.png", "/Volumes/SD256GB02/shoe/image024.png" };
 
 		boolean[] fileState = new boolean[]
-		{ false, false, false };
+		{ false, false, false, false };
 
 		for (int i = 0; i < fPathArray.length; i++)
 		{
@@ -324,6 +329,7 @@ public class Main
 				fileState[0] = imgfileType.isValidJPEG(is, fileSize.length);
 				fileState[1] = imgfileType.isValidPNG(is);
 				fileState[2] = imgfileType.isJPEG(new File(fPathArray[i]));
+				fileState[3] = imgfileType.isPng(new File(fPathArray[i]));
 				System.out.println("[" + i + "] file State: " + Arrays.toString(fileState));
 			} catch (Exception e)
 			{
@@ -392,7 +398,8 @@ public class Main
 		// testCalculateEndTime2();
 		// testDateBefore();
 
-		testImageFileCheck();
+		// testImageFileCheck();
+		testImgFileType();
 	}
 
 }
