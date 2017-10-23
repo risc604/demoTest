@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+//https://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo/
+//http://blog.jaimon.co.uk/simpleimageinfo/SimpleImageInfo.java.html
+
 public class ImageFileType
 {
 	public ImageFileType()
