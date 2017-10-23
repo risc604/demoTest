@@ -1,3 +1,7 @@
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -87,6 +91,29 @@ public class ImageFileInfo
 			return false;
 		}
 		return true;
+	}
+
+	// Boolean status = isJPEG(new File("C:\\Users\\Public\\Pictures\\Sample
+	// Pictures\\Chrysanthemum.jpg"));
+	// System.out.println("Status: " + status);
+
+	public static Boolean isJPEG(File filename) throws Exception
+	{
+		DataInputStream ins = new DataInputStream(new BufferedInputStream(new FileInputStream(filename)));
+		try
+		{
+			if (ins.readInt() == 0xffd8ffe0)
+			{
+				return true;
+			} else
+			{
+				return false;
+
+			}
+		} finally
+		{
+			ins.close();
+		}
 	}
 
 }

@@ -1,12 +1,20 @@
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+
+import jdk.internal.jimage.ImageReader;
 
 public class Main
 {
@@ -313,6 +321,27 @@ public class Main
 		System.out.println("date2.before(date1): " + date2.before(date1));
 		System.out.printf("date2.before(date3): " + date2.before(date3));
 
+	}
+
+	public static void testImageFileCheck()
+	{
+		String fileName = "Your image file to be read";
+		ImageInputStream iis = ImageIO.createImageInputStream(new File(fileName));
+		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName("jpg");
+		boolean canRead = false;
+		while (readers.hasNext())
+		{
+			try
+			{
+				ImageReader reader = readers.next();
+				reader.setInput(iis);
+				reader.read(0);
+				canRead = true;
+				break;
+			} catch (IOException exp)
+			{
+			}
+		}
 	}
 
 	public static void main(String[] args) throws ParseException
