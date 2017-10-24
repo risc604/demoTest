@@ -296,18 +296,39 @@ public class Main
 		calculateEndDT(record - 1, startTime);
 	}
 
+	public static void testDateBefore()
+	{
+		final String PATTERN = "yyyy/MM/dd HH:mm:ss";
+		SimpleDateFormat sdf = new SimpleDateFormat(PATTERN);
+		Date date1 = null, date2 = null, date3 = null;
+		try
+		{
+			date1 = sdf.parse("2017/10/12 15:40:00");
+			date2 = sdf.parse("2017/10/12 16:00:00");
+			date3 = sdf.parse("2017/10/12 16:05:10");
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("date2.before(date1): " + date2.before(date1));
+		System.out.printf("date2.before(date3): " + date2.before(date3));
+	}
+
 	public static void testImgFileType()
 	{
 		ImageFileType imgfileType = new ImageFileType();
 
-		// String[] fPathArray = new String[]
-		// { "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "",
-		// "D:\\mt24hr\\20171019094813.png",
-		// "D:\\mt24hr\\20171019100051.png" };
-
 		String[] fPathArray = new String[]
-		{ "/Volumes/SD256GB02/shoe/ladypeep_1494324742.jpg", "/Volumes/SD256GB02/shoe/pigalle_1477584732.jpg", "",
-		        "/Volumes/SD256GB02/shoe/20171023113656.png", "/Volumes/SD256GB02/shoe/image024.png" };
+		{ "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "", "D:\\mt24hr\\20171019094813.png",
+		        "D:\\mt24hr\\20171019100051.png" };
+
+		// String[] fPathArray = new String[]
+		// { "/Volumes/SD256GB02/shoe/ladypeep_1494324742.jpg",
+		// "/Volumes/SD256GB02/shoe/pigalle_1477584732.jpg", "",
+		// "/Volumes/SD256GB02/shoe/20171023113656.png",
+		// "/Volumes/SD256GB02/shoe/image024.png" };
 
 		boolean[] fileState = new boolean[]
 		{ false, false, false, false };
@@ -339,26 +360,6 @@ public class Main
 		}
 	}
 
-	public static void testDateBefore()
-	{
-		final String PATTERN = "yyyy/MM/dd HH:mm:ss";
-		SimpleDateFormat sdf = new SimpleDateFormat(PATTERN);
-		Date date1 = null, date2 = null, date3 = null;
-		try
-		{
-			date1 = sdf.parse("2017/10/12 15:40:00");
-			date2 = sdf.parse("2017/10/12 16:00:00");
-			date3 = sdf.parse("2017/10/12 16:05:10");
-		} catch (ParseException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		System.out.println("date2.before(date1): " + date2.before(date1));
-		System.out.printf("date2.before(date3): " + date2.before(date3));
-	}
-
 	public static void testImageFileCheck() throws Throwable
 	{
 		String fileName = "Your image file to be read";
@@ -381,6 +382,55 @@ public class Main
 		}
 	}
 
+	public static void testSimpleImageInfo()
+	{
+		// SimpleImageInfo sif;
+		String[] fPathArray = new String[]
+		{ "D:\\Camera\\20170215_190504.jpg", "D:\\Camera\\20170402_181409.jpg", "", "D:\\mt24hr\\20171019094813.png",
+		        "D:\\mt24hr\\20171019100051.png" };
+
+		// String[] fPathArray = new String[]
+		// { "/Volumes/SD256GB02/shoe/ladypeep_1494324742.jpg",
+		// "/Volumes/SD256GB02/shoe/pigalle_1477584732.jpg", "",
+		// "/Volumes/SD256GB02/shoe/20171023113656.png",
+		// "/Volumes/SD256GB02/shoe/image024.png" };
+
+		boolean[] fileState = new boolean[]
+		{ false, false, false, false };
+
+		for (int i = 0; i < fPathArray.length; i++)
+		{
+			if (fPathArray[i].equalsIgnoreCase(""))
+				continue;
+
+			try
+			{
+				InputStream is = new FileInputStream(fPathArray[i]);
+				// InputStream is =
+				// getClass().getClassLoader().getResourceAsStream(fPathArray[i]);
+				// Path file = Paths.get(fPathArray[i]);
+				// InputStream is = Files.newInputStream(file);
+				byte[] fileSize = is.readAllBytes();
+				System.out.printf("file size: %04d bytes %n", fileSize.length);
+
+				SimpleImageInfo sif = new SimpleImageInfo(fileSize);
+				SimpleImageInfo sif2 = new SimpleImageInfo(new File(fPathArray[i]));
+				// SimpleImageInfo sif3 = new SimpleImageInfo(is);
+
+				// fileState[0] = sif.(is);
+				// fileState[1] = sif(is);
+				// fileState[2] = imgfileType.isJPEG(new File(fPathArray[i]));
+				// fileState[3] = imgfileType.isPng(new File(fPathArray[i]));
+				// System.out.println("[" + i + "] file State: " + Arrays.toString(fileState));
+			} catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	public static void main(String[] args) throws Throwable
 	{
 		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
@@ -399,7 +449,8 @@ public class Main
 		// testDateBefore();
 
 		// testImageFileCheck();
-		testImgFileType();
+		// testImgFileType();
+		testSimpleImageInfo();
 	}
 
 }

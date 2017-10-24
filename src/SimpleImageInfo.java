@@ -1,3 +1,4 @@
+
 /*
  *	SimpleImageInfo.java
  *
@@ -34,33 +35,42 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @SuppressWarnings("all")
-public class SimpleImageInfo {
+public class SimpleImageInfo
+{
 	private int height;
 	private int width;
 	private String mimeType;
 
-	private SimpleImageInfo() {
+	private SimpleImageInfo()
+	{
 
 	}
 
-	public SimpleImageInfo(File file) throws IOException {
+	public SimpleImageInfo(File file) throws IOException
+	{
 		InputStream is = new FileInputStream(file);
-		try {
+		try
+		{
 			processStream(is);
-		} finally {
+		} finally
+		{
 			is.close();
 		}
 	}
 
-	public SimpleImageInfo(InputStream is) throws IOException {
+	public SimpleImageInfo(InputStream is) throws IOException
+	{
 		processStream(is);
 	}
 
-	public SimpleImageInfo(byte[] bytes) throws IOException {
+	public SimpleImageInfo(byte[] bytes) throws IOException
+	{
 		InputStream is = new ByteArrayInputStream(bytes);
-		try {
+		try
+		{
 			processStream(is);
-		} finally {
+		} finally
+		{
 			is.close();
 		}
 	}
@@ -140,45 +150,56 @@ public class SimpleImageInfo {
 		if (mimeType == null) {
 			throw new IOException("Unsupported image type");
 		}
+		
+		System.out.println("mimeType: " +¡@mimeType);
 	}
-	
-	private int readInt(InputStream is, int noOfBytes, boolean bigEndian) throws IOException {
+
+	private int readInt(InputStream is, int noOfBytes, boolean bigEndian) throws IOException
+	{
 		int ret = 0;
 		int sv = bigEndian ? ((noOfBytes - 1) * 8) : 0;
 		int cnt = bigEndian ? -8 : 8;
-		for(int i=0;i<noOfBytes;i++) {
+		for (int i = 0; i < noOfBytes; i++)
+		{
 			ret |= is.read() << sv;
 			sv += cnt;
 		}
 		return ret;
 	}
 
-	public int getHeight() {
+	public int getHeight()
+	{
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(int height)
+	{
 		this.height = height;
 	}
 
-	public int getWidth() {
+	public int getWidth()
+	{
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(int width)
+	{
 		this.width = width;
 	}
 
-	public String getMimeType() {
+	public String getMimeType()
+	{
 		return mimeType;
 	}
 
-	public void setMimeType(String mimeType) {
+	public void setMimeType(String mimeType)
+	{
 		this.mimeType = mimeType;
 	}
 
 	@Override
-	public String toString() {
-		return "MIME Type : " + mimeType + "\t Width : " + width + "\t Height : " + height; 
+	public String toString()
+	{
+		return "MIME Type : " + mimeType + "\t Width : " + width + "\t Height : " + height;
 	}
 }
