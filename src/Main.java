@@ -411,11 +411,13 @@ public class Main
 				// Path file = Paths.get(fPathArray[i]);
 				// InputStream is = Files.newInputStream(file);
 				byte[] fileSize = is.readAllBytes();
-				System.out.printf("file size: %04d bytes %n", fileSize.length);
-
 				SimpleImageInfo sif = new SimpleImageInfo(fileSize);
-				SimpleImageInfo sif2 = new SimpleImageInfo(new File(fPathArray[i]));
+				System.out.printf("file size: %04d bytes, %s %n", fileSize.length, sif.getMimeType());
+
+				// SimpleImageInfo sif2 = new SimpleImageInfo(new File(fPathArray[i]));
 				// SimpleImageInfo sif3 = new SimpleImageInfo(is);
+
+				System.out.println("[" + i + "]: " + sif.getMimeType());
 
 				// fileState[0] = sif.(is);
 				// fileState[1] = sif(is);
