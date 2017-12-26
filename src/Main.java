@@ -176,31 +176,6 @@ public class Main
 		return true;
 	}
 
-	public static void main(String[] args) throws Throwable
-	{
-		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
-		// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
-
-		// randomTest();
-		// testDateTime();
-		// testHexDateTime();
-		// testDateToLong();
-		// testStringSparet();
-		// testStringToken();
-		// testStringArray();
-		// testStringArray2();
-
-		// testCalculateEndTime2();
-		// testDateBefore();
-
-		// testImageFileCheck();
-		// testImgFileType();
-		// testSimpleImageInfo();
-
-		testLocaleDTFormat();
-
-	}
-
 	public static void randomTest()
 	{
 		RandomDemo rd = new RandomDemo();
@@ -458,6 +433,31 @@ public class Main
 		{
 			System.out.printf("%s:%02d %n", tokens.nextToken(), tokens.countTokens());
 		}
+	}
+
+	public static void main(String[] args) throws Throwable
+	{
+		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
+		// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
+
+		// randomTest();
+		// testDateTime();
+		// testHexDateTime();
+		// testDateToLong();
+		// testStringSparet();
+		// testStringToken();
+		// testStringArray();
+		// testStringArray2();
+
+		// testCalculateEndTime2();
+		// testDateBefore();
+
+		// testImageFileCheck();
+		// testImgFileType();
+		// testSimpleImageInfo();
+
+		testLocaleDTFormat();
+
 	}
 
 	public Main()
