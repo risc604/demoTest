@@ -176,6 +176,41 @@ public class Main
 		return true;
 	}
 
+	public static void testForRandom()
+	{
+		for (int number = 0; number != 5; number = (int) (Math.random() * 100))
+		{
+			System.out.println(number);
+		}
+	}
+
+	public static void main(String[] args) throws Throwable
+	{
+		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
+		// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
+
+		// randomTest();
+		// testDateTime();
+		// testHexDateTime();
+		// testDateToLong();
+		// testStringSparet();
+		// testStringToken();
+		// testStringArray();
+		// testStringArray2();
+
+		// testCalculateEndTime2();
+		// testDateBefore();
+
+		// testImageFileCheck();
+		// testImgFileType();
+		// testSimpleImageInfo();
+
+		// testLocaleDTFormat();
+
+		testForRandom();
+
+	}
+
 	public static void randomTest()
 	{
 		RandomDemo rd = new RandomDemo();
@@ -321,11 +356,13 @@ public class Main
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
 	}
 
+	@SuppressWarnings("unused")
 	public static void testSimpleImageInfo()
 	{
 		// SimpleImageInfo sif;
