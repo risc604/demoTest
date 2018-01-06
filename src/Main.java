@@ -349,6 +349,7 @@ public class Main
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
+		System.out.println("ldtFormat: " + String.valueOf(ldtFormat));
 	}
 
 	public static void testSimpleImageInfo()
