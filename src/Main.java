@@ -176,6 +176,14 @@ public class Main
 		return true;
 	}
 
+	public static void testForRandom()
+	{
+		for (int number = 0; number != 5; number = (int) (Math.random() * 100))
+		{
+			System.out.println(number);
+		}
+	}
+
 	public static void main(String[] args) throws Throwable
 	{
 		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
@@ -197,7 +205,9 @@ public class Main
 		// testImgFileType();
 		// testSimpleImageInfo();
 
-		testLocaleDTFormat();
+		// testLocaleDTFormat();
+
+		testForRandom();
 
 	}
 
@@ -346,12 +356,14 @@ public class Main
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
 		System.out.println("ldtFormat: " + String.valueOf(ldtFormat));
 	}
 
+	@SuppressWarnings("unused")
 	public static void testSimpleImageInfo()
 	{
 		// SimpleImageInfo sif;
