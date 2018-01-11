@@ -360,6 +360,7 @@ public class Main
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
+		System.out.println("ldtFormat: " + String.valueOf(ldtFormat));
 	}
 
 	@SuppressWarnings("unused")
@@ -470,31 +471,6 @@ public class Main
 		{
 			System.out.printf("%s:%02d %n", tokens.nextToken(), tokens.countTokens());
 		}
-	}
-
-	public static void main(String[] args) throws Throwable
-	{
-		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
-		// System.out.println("isNumeric(\"35,42\"): " + isNumeric("35,42"));
-
-		// randomTest();
-		// testDateTime();
-		// testHexDateTime();
-		// testDateToLong();
-		// testStringSparet();
-		// testStringToken();
-		// testStringArray();
-		// testStringArray2();
-
-		// testCalculateEndTime2();
-		// testDateBefore();
-
-		// testImageFileCheck();
-		// testImgFileType();
-		// testSimpleImageInfo();
-
-		testLocaleDTFormat();
-
 	}
 
 	public Main()
