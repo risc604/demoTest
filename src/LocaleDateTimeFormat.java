@@ -24,8 +24,8 @@ public class LocaleDateTimeFormat
 		for (int i = 0; i < 4; i++)
 		{
 			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
-			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
 			DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
 			String showDT = dtFormat.format(date);
 			System.out.println("[" + i + "]: " + showDT);
 		}
