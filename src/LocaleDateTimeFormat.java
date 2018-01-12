@@ -51,8 +51,8 @@ public class LocaleDateTimeFormat
 		Date[] dateArray = new Date[2];
 		dateArray[0] = Calendar.getInstance(Locale.GERMANY).getTime();
 		cc.setTime(dateArray[0]);
-		// cc.add(Calendar.MINUTE, 30);
-		cc.add(Calendar.HOUR, 30);
+		cc.add(Calendar.MINUTE, 30);
+		// cc.add(Calendar.HOUR, 30);
 		dateArray[1] = cc.getTime();
 
 		System.out.println(Arrays.toString(dateArray));
