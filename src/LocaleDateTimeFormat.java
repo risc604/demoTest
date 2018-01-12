@@ -1,4 +1,5 @@
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,8 +52,14 @@ public class LocaleDateTimeFormat
 		Date[] dateArray = new Date[2];
 		dateArray[0] = Calendar.getInstance(Locale.GERMANY).getTime();
 		cc.setTime(dateArray[0]);
-		cc.add(Calendar.MINUTE, 30);
-		// cc.add(Calendar.HOUR, 30);
+		int mode = 1;
+		if (mode == 1)
+		{
+			cc.add(Calendar.MINUTE, 30);
+		} else
+		{
+			cc.add(Calendar.HOUR, 30);
+		}
 		dateArray[1] = cc.getTime();
 
 		System.out.println(Arrays.toString(dateArray));
@@ -69,7 +76,14 @@ public class LocaleDateTimeFormat
 		System.out.println("dtString[0] compareTo dtString[1]: " + dtString[0].compareTo(dtString[1]));
 		System.out.println("dtString[0] indexOf dtString[1]: " + dtString[0].indexOf(dtString[1]));
 		System.out.println("dtString[0] regionMatch dtString[1]: " + dtString[0].regionMatches(0, dtString[1], 0, 9));
-		if (dtString[0].regionMatches(0, dtString[1], 0, 9))
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		String[] sdfString = new String[2];
+		sdfString[0] = sdf.format(dateArray[0]);
+		sdfString[1] = sdf.format(dateArray[1]);
+		System.out.println("sdfString: " + Arrays.toString(sdfString));
+
+		if (sdfString[0].regionMatches(0, sdfString[1], 0, 10))
 		{
 			dfArray[1] = DateFormat.getTimeInstance(3, Locale.GERMANY);
 			dtString[1] = dfArray[1].format(dateArray[1]);
@@ -77,32 +91,6 @@ public class LocaleDateTimeFormat
 		System.out.println("dtString[0] date length:" + dfArray[0]);
 		System.out.println("@@ dtString[1]: " + dtString[1]);
 		System.out.println(dtString[0] + " ~ " + dtString[1]);
-
-		char[] str0 = dtString[0].toCharArray();
-		char[] str1 = dtString[1].toCharArray();
-		int leng = 0;
-
-		if (dtString[0].length() <= dtString[1].length())
-			leng = dtString[0].length();
-		else
-			leng = dtString[1].length();
-
-		System.out.print("check string leng: " + leng + ", diff: ");
-		for (int i = 0; i < leng; i++)
-		{
-			if (str0[i] != str1[i])
-			{
-				System.out.printf("%d, ", i);
-			}
-			// System.out.println(str0[i] + ", " + str1[i]);
-		}
-		System.out.println();
-
-		System.out.println("dtString[0].intern(): " + dtString[0].intern());
-
-		StringBuilder sb0 = new StringBuilder(dtString[0]);
-		StringBuilder sb1 = new StringBuilder(dtString[1]);
-		System.out.println("StringBuilder indexOf: " + sb0.indexOf(sb1.toString()));
 	}
 
 	public void compareString()
