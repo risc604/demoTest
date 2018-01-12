@@ -74,7 +74,7 @@ public class LocaleDateTimeFormat
 			dfArray[1] = DateFormat.getTimeInstance(3, Locale.GERMANY);
 			dtString[1] = dfArray[1].format(dateArray[1]);
 		}
-
+		System.out.println("dtString[0] date length:" + dfArray[0]);
 		System.out.println("@@ dtString[1]: " + dtString[1]);
 		System.out.println(dtString[0] + " ~ " + dtString[1]);
 
