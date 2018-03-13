@@ -356,14 +356,14 @@ public class Main
 		}
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
 		System.out.println("ldtFormat: " + String.valueOf(ldtFormat));
 	}
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	public static void testSimpleImageInfo()
 	{
 		// SimpleImageInfo sif;
@@ -476,7 +476,7 @@ public class Main
 	public Main()
 	{
 	}
-	
+
 	public static void main(String[] args) throws Throwable
 	{
 		// System.out.println("isNumeric(\"35.42\"): " + isNumeric("35.42"));
@@ -502,5 +502,4 @@ public class Main
 
 	}
 
-	
 }
