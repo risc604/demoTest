@@ -271,6 +271,31 @@ public class Main
 		System.out.println("date: " + date + ", long time: " + date.getTime());
 	}
 
+	public static void testDateTimeTosecand()
+	{
+		// 2016-01-01 15:00:00 GMT
+		SimpleDateFormat sdfor = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
+		Date date = null, date0 = null;
+
+		try
+		{
+			date = sdfor.parse("2016-01-01 15:00:00 GMT");
+			date0 = sdfor.parse("2018-02-27 10:54:00 CST");
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("date: " + date + ", long time: " + date.getTime());
+
+		Date currentDT = Calendar.getInstance().getTime();
+		System.out.println("currentDT: " + sdfor.format(currentDT) + ", " + currentDT.getTime() + " ms" + ", data0: "
+		        + sdfor.format(date0) + ", " + date0.getTime() + " ms");
+		int diffSecand = (int) (Math.abs(date0.getTime() - currentDT.getTime()) / (1000));
+		System.out.println("diffSecand: " + diffSecand);
+
+	}
+
 	public static void testHexDateTime()
 	{
 		String hexDate = "1105160F23";
@@ -498,7 +523,9 @@ public class Main
 		// testImgFileType();
 		// testSimpleImageInfo();
 
-		testLocaleDTFormat();
+		// testLocaleDTFormat();
+
+		testDateTimeTosecand();
 
 	}
 
