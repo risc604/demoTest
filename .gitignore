@@ -2,9 +2,8 @@
 /pom.xml
 /.settings
 .settings
+*.class
 .classpath
 .DS_Store
-*.class
-/bin
 .project
 .factorypath
