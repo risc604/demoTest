@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -23,6 +24,8 @@ public class LocaleDateTimeFormat
 		Date date = cal.getTime();
 		System.out.println("Date Obj: " + date.toString());
 		System.out.printf("Date: %tD %n", date);
+		System.out.printf("Date: %tp, %tr %n", date, date);
+		System.out.printf("Date: %tF %n", date);
 		System.out.println("Dateformat: ");
 		for (int i = 0; i < 4; i++)
 		{
@@ -30,6 +33,126 @@ public class LocaleDateTimeFormat
 			DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
 			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
 			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date long & time short format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date long & time medium format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.MEDIUM, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date long & time long format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date medium & time short format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date medium & time medium format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date medium & time long format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date short & time short format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date short & time medium format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date short & time long format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			DateFormat dtFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG, Locale.GERMAN);
+			// DateFormat dtFormat = DateFormat.getTimeInstance(i, i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Date format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
+			DateFormat dtFormat = DateFormat.getDateInstance(i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		System.out.println("Time format ...");
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
+			DateFormat dtFormat = DateFormat.getTimeInstance(i, Locale.GERMAN);
+			String showDT = dtFormat.format(date);
+			System.out.println("[" + i + "]: " + showDT);
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.TAIWAN);
+			// DateFormat dtFormat = DateFormat.getDateTimeInstance(i, i, Locale.GERMAN);
+			SimpleDateFormat dtFormat = (SimpleDateFormat) SimpleDateFormat.getTimeInstance(SimpleDateFormat.MEDIUM,
+			        Locale.GERMAN);
+			String showDT = dtFormat.format(date.getTime());
 			System.out.println("[" + i + "]: " + showDT);
 		}
 
@@ -43,6 +166,8 @@ public class LocaleDateTimeFormat
 		// Locale locale = new Locale("en", "US"); // �ϰ쬰����
 		// DateFormat LocalFormat = DateFormat.getDateInstance(DateFormat.FULL, locale);
 		// System.out.println("US DT: " + Local);
+
+		simpleDateFormatTest();
 	}
 
 	// @SuppressWarnings("null")
@@ -93,6 +218,18 @@ public class LocaleDateTimeFormat
 		System.out.println(dtString[0] + " ~ " + dtString[1]);
 	}
 
+	public void simpleDateFormatTest()
+	{
+		// String format = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
+		// DateFormat.MEDIUM, Locale.getDefault())
+		// .toString();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy, HH:mm:ss");
+
+		// if
+		System.out.println("sdf date format: " + sdf.format(new Date().getTime()));
+	}
+
 	public void compareString()
 	{
 		// String searchMe = "Green Eggs and Ham";
@@ -114,6 +251,25 @@ public class LocaleDateTimeFormat
 		}
 		if (!foundIt)
 			System.out.println("No match found.");
+	}
+
+	private static final DateTimeFormatter FMT_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
+	private static final DateTimeFormatter FMT_12 = DateTimeFormatter.ofPattern("h:mm:ssa");
+
+	public static String convertTimeTo24(String time12)
+	{
+		return convertFormats(time12, FMT_12, FMT_24);
+	}
+
+	public static String convertTimeTo12(String time24)
+	{
+		return convertFormats(time24, FMT_24, FMT_12);
+	}
+
+	private static String convertFormats(String fromTime, DateTimeFormatter fromFormat, DateTimeFormatter toFormat)
+	{
+		LocalTime time = LocalTime.parse(fromTime, fromFormat);
+		return toFormat.format(time);
 	}
 
 }

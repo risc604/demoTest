@@ -271,6 +271,51 @@ public class Main
 		System.out.println("date: " + date + ", long time: " + date.getTime());
 	}
 
+	public static void testDateFormat2000()
+	{
+		// 2000-06-01 01:01:00 CST
+		final String date2000 = "[0, 6, 1, 1, 1]";
+		SimpleDateFormat sdfor = new SimpleDateFormat("[yy, MM, dd, hh, mm]");
+		Date date = null;
+
+		try
+		{
+			date = sdfor.parse(date2000);
+			// System.out.println("date2000.substring(1, 2): " + date2000.substring(1, 2));
+			if (date2000.substring(1, 2).equalsIgnoreCase("0"))
+			{
+				// date.setYear(00);
+				Calendar cal = Calendar.getInstance();
+				cal.set(Calendar.YEAR, 2000);
+				date = cal.getTime();
+				System.out.println("2 date2000.substring(1, 2): " + date2000.substring(1, 2));
+			}
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("date: " + sdfor.format(date) + ", long time: " + date.getTime());
+	}
+
+	public static void checkDate(String date) throws ParseException
+	{
+		Calendar calendar = Calendar.getInstance();
+		int year = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(2, 4));
+		calendar.setLenient(false);
+		int yearOfCentury = calendar.get(Calendar.YEAR);
+		int century = yearOfCentury - yearOfCentury % 100;
+		year = year + century;
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month - 1);
+		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		System.out.println("Date +" + calendar.getTime());
+	}
+
 	public static void testDateTimeTosecand()
 	{
 		// 2016-01-01 15:00:00 GMT
@@ -280,7 +325,7 @@ public class Main
 		try
 		{
 			date = sdfor.parse("2016-01-01 15:00:00 GMT");
-			date0 = sdfor.parse("2018-02-27 10:54:00 CST");
+			date0 = sdfor.parse("2018-03-14 10:00:00 CST");
 		} catch (ParseException e)
 		{
 			// TODO Auto-generated catch block
@@ -381,7 +426,6 @@ public class Main
 		}
 	}
 
-	// @SuppressWarnings("unused")
 	public static void testLocaleDTFormat()
 	{
 		LocaleDateTimeFormat ldtFormat = new LocaleDateTimeFormat();
@@ -402,8 +446,8 @@ public class Main
 		// "/Volumes/SD256GB02/shoe/20171023113656.png",
 		// "/Volumes/SD256GB02/shoe/image024.png" };
 
-		boolean[] fileState = new boolean[]
-		{ false, false, false, false };
+		// boolean[] fileState = new boolean[]
+		// { false, false, false, false };
 
 		for (int i = 0; i < fPathArray.length; i++)
 		{
@@ -523,9 +567,11 @@ public class Main
 		// testImgFileType();
 		// testSimpleImageInfo();
 
-		// testLocaleDTFormat();
+		testLocaleDTFormat();
 
-		testDateTimeTosecand();
+		// testDateTimeTosecand();
+		// testDateFormat2000();
+		// checkDate("00060101");
 
 	}
 
