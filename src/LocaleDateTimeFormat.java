@@ -13,9 +13,11 @@ public class LocaleDateTimeFormat
 {
 	public LocaleDateTimeFormat()
 	{
-		getLocalDTFormat();
-		checkDTString();
+		// getLocalDTFormat();
+		// checkDTString();
 		// compareString();
+
+		DTStringFormatTest();
 	}
 
 	public void getLocalDTFormat()
@@ -251,6 +253,21 @@ public class LocaleDateTimeFormat
 		}
 		if (!foundIt)
 			System.out.println("No match found.");
+	}
+
+	public void DTStringFormatTest()
+	{
+		Date dtObject = Calendar.getInstance().getTime();
+
+		String dateStr = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(dtObject);
+		System.out.printf(" %s", dateStr);
+		// boolean is24H = SimpleDateFormat
+		System.out.printf(" %1$tH:%1$tM %n", dtObject);
+
+		System.out.printf(" %s", dateStr);
+		System.out.printf(" %1$tp %1$tl:%1$tM %n", dtObject);
+		// System.out.println("@@ dtString[1]: " + dtString[1]);
+		// System.out.println(dtString[0] + " ~ " + dtString[1]);
 	}
 
 	private static final DateTimeFormatter FMT_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
