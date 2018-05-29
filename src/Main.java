@@ -542,6 +542,13 @@ public class Main
 		}
 	}
 
+	public static void testCurrentDateTime()
+	{
+		DateFormatDemo dfd = new DateFormatDemo();
+
+		dfd.getCurrentDT();
+	}
+
 	public Main()
 	{
 	}
@@ -567,7 +574,8 @@ public class Main
 		// testImgFileType();
 		// testSimpleImageInfo();
 
-		testLocaleDTFormat();
+		// testLocaleDTFormat();
+		testCurrentDateTime();
 
 		// testDateTimeTosecand();
 		// testDateFormat2000();
